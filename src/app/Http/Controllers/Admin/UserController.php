@@ -37,22 +37,22 @@ class UserController extends Controller
 
     public function store(UserRequest $request): RedirectResponse
     {
-        $length = 12;
-        $randomPassword = bin2hex(random_bytes($length / 2));
-        $lengthPasswordToken = 16;
-        $passwordToken = bin2hex(random_bytes($lengthPasswordToken / 2));
+        // $length = 12;
+        // $randomPassword = bin2hex(random_bytes($length / 2));
+        // $lengthPasswordToken = 16;
+        // $passwordToken = bin2hex(random_bytes($lengthPasswordToken / 2));
 
         $user = User::create([
             'plan_id' => 1,
             'name' => $request->name,
             'email' => $request->email,
-            'company' => $request->company,
-            'password' => Hash::make($randomPassword),
-            'password_token' => $passwordToken,
+            // 'company' => $request->company,
+            'password' => Hash::make($request->password),
+            // 'password_token' => $passwordToken,
             'tel' => $request->tel,
         ]);
 
-        SendMail::dispatch(new UserRegisterMail($user, $randomPassword));
+        // SendMail::dispatch(new UserRegisterMail($user, $randomPassword));
 
         return redirect(RouteServiceProvider::USERS)->with('message', '登録が完了しました');
     }
