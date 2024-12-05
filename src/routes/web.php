@@ -1,11 +1,10 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-// use App\Http\Controllers\Admin\AdminLoginController;
-// use App\Http\Controllers\Admin\AdminDashboardController;
-// use App\Http\Controllers\Admin\AdminUserController;
-// use App\Http\Controllers\Admin\ImageController;
-// use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Admin\AdminLoginController;
+use App\Http\Controllers\Admin\AdminDashboardController;
+use App\Http\Controllers\Admin\AdminUserController;
+use App\Http\Controllers\Admin\UserController as UserAdminController;
 use App\Http\Controllers\Web\TopController;
 use App\Http\Controllers\Web\LoginController;
 use App\Http\Controllers\Web\PasswordController;
@@ -40,4 +39,21 @@ Route::group(['middleware' => 'basicauth'], function () {
     });
     Route::get('login', [LoginController::class, 'create'])->name('user.login');
     Route::post('login', [LoginController::class, 'store']);
+
+
+    Route::get('admin/login', [AdminLoginController::class, 'index'])->name('admin.login');
+    Route::post('admin/login', [AdminLoginController::class, 'store'])->name('admin.login');
+    Route::middleware('guest.admin')->group(function () {
+        Route::get('admin/dashboard', [AdminDashboardController::class, 'index'])->name('admin.dashboard.index');
+
+        Route::get('admin/admin_users', [AdminUserController::class, 'index'])->name('admin_user.list');
+        Route::get('admin/admin_users/add', [AdminUserController::class, 'create'])->name('admin_user.create');
+        Route::post('admin/admin_users/add', [AdminUserController::class, 'store'])->name('admin_user.store');
+
+        Route::get('admin/users', [UserAdminController::class, 'index'])->name('user.list');
+        Route::get('admin/users/add', [UserAdminController::class, 'create'])->name('user.create');
+        Route::post('admin/users/add', [UserAdminController::class, 'store'])->name('user.store');
+        Route::get('admin/users/{id}', [UserAdminController::class, 'edit'])->name('user.edit');
+        Route::post('admin/users/{id}', [UserAdminController::class, 'update'])->name('user.update');
+    });
 });
