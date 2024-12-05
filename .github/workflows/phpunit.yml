@@ -23,9 +23,14 @@ jobs:
       - name: npm
         run: |
           docker compose exec app npm ci
-      # - name: migrate
-      #   run: |
-      #     docker compose exec -T app php artisan migrate
+
+      - name: Run PHPStan
+        run: docker compose exec app vendor/bin/phpstan analyze
+        
+      - name: composer phpcs .
+        run: |
+          docker compose exec app composer phpcs .
+      
       - name: phpunit
         run: |
           docker compose exec app php artisan test --debug
