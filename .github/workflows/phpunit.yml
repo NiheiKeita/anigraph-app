@@ -1,0 +1,32 @@
+name: phpunit
+
+on: [pull_request]
+
+jobs:
+  phpunit:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./src
+    steps:
+      - uses: actions/checkout@v2
+      - name: dokcer-compose up
+        run: |
+          docker compose up -d
+      - name: composer install
+        run: |
+          docker compose exec app composer install
+      - name: Laravel Settings
+        run: |
+          docker compose exec -T app cp .env.example .env
+          docker compose exec -T app php artisan key:generate
+      - name: npm
+        run: |
+          docker compose exec app npm ci
+      # - name: migrate
+      #   run: |
+      #     docker compose exec -T app php artisan migrate
+      - name: phpunit
+        run: |
+          docker compose exec app php artisan test --debug
+

@@ -1,0 +1,15 @@
+{
+    "cSpell.words": [
+        "inertiajs"
+    ],
+    "editor.formatOnSave": true,
+    "editor.codeActionsOnSave": {
+        "source.fixAll.eslint": "explicit"
+    },
+    "[javascript, typescrip, ts, tsx, js]": {
+        "editor.defaultFormatter": "vscode.typescript-language-features",
+    },
+    "[php]": {
+        "editor.defaultFormatter": "bmewburn.vscode-intelephense-client",
+    },
+}

@@ -1,0 +1,10 @@
+{
+  "devDependencies": {
+    "husky": "^9.1.4"
+  },
+  "scripts": {
+    "prepare": "husky",
+    "lint": "npm --prefix ./src run lint",
+    "type-check": "npm --prefix ./src run type-check"
+  }
+}
