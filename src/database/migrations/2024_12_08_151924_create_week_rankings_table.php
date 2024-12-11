@@ -15,6 +15,8 @@ return new class extends Migration
             $table->id();
             $table->timestamps();
             $table->softDeletes();
+
+            $table->bigInteger('term_ranking_id')->nullable();
         });
     }
 
