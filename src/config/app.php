@@ -198,4 +198,5 @@ return [
 
     'email' => env('APP_EMAIL', 'info@xs163201.xsrv.jp'),
     'admin_email' => env('ADMIN_EMAIL', 'admin@example.com'),
+    'annict_api_key' => env('ANNICT_API_KEY'),
 ];

@@ -15,6 +15,9 @@ return new class extends Migration
             $table->id();
             $table->timestamps();
             $table->softDeletes();
+
+            $table->text('year')->nullable();
+            $table->text('season')->nullable();
         });
     }
 
