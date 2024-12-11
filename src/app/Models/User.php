@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\DB;
@@ -61,5 +63,33 @@ class User extends Authenticatable
                 ]);
             }
         });
+    }
+    /**
+     *@return BelongsToMany<Animation, $this>
+     */
+    public function animations(): BelongsToMany
+    {
+        return $this->belongsToMany(Animation::class, 'user_animations', 'user_id', 'animation_id')->withTimestamps();
+    }
+    /**
+     *@return BelongsToMany<Episode, $this>
+     */
+    public function episodes(): BelongsToMany
+    {
+        return $this->belongsToMany(Episode::class, 'user_episodes', 'user_id', 'episode_id')->withTimestamps();
+    }
+    /**
+     * @return HasMany<TermRanking, $this>
+     */
+    public function termRankings(): HasMany
+    {
+        return $this->hasMany(TermRanking::class);
+    }
+    /**
+     * @return HasMany<Recommendation, $this>
+     */
+    public function recommendations(): HasMany
+    {
+        return $this->hasMany(Recommendation::class);
     }
 }
