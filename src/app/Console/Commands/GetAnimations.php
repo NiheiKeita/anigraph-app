@@ -28,12 +28,13 @@ class GetAnimations extends Command
      */
     public function handle(): void
     {
-        $years = range(2000, 2025);
+        $years = range(2025, 2025);
         $seasons = ["spring", "summer", "autumn", "winter"];
         // Artisan::call('app:get-this-term-animations "2024-summer"');
         // 年と季節の組み合わせでArtisanコマンドを呼び出す
         foreach ($years as $year) {
             foreach ($seasons as $season) {
+
                 $term = Term::firstOrCreate([
                     "year" => $year,
                     "season" => $season,

@@ -46,14 +46,23 @@ class GetThisTermAnimations extends Command
             return;
         }
         curl_close($ch);
-        if (is_string($response)) {
-            $responseArray = json_decode($response, true); // 配列としてデコード
-        } else {
-            // エラーハンドリング
-            $responseArray = null; // または適切な初期値
-        }
+        $responseArray = json_decode($response);
         // $responseArray = json_decode($response);
         foreach ($responseArray->works as $animation) {
+            $image = "";
+            $recommendedImage = $animation->images->recommended_url;
+            $facebookImage = $animation->images->facebook->og_image_url;
+            $twitterImage = $animation->images->twitter->normal_avatar_url;
+            if ($twitterImage) {
+                $image = $twitterImage;
+            }
+            if ($recommendedImage) {
+                $image = $recommendedImage;
+            }
+            if ($facebookImage) {
+                $image = $facebookImage;
+            }
+
             Animation::firstOrCreate([
                 "term_id" => $termId,
                 "title" => $animation->title,
@@ -62,13 +71,13 @@ class GetThisTermAnimations extends Command
                 "media" => $animation->media,
                 "official_site_url" => $animation->official_site_url,
                 "wikipedia_url" => $animation->wikipedia_url,
-                "facebook_image_url" => $animation->images->facebook->og_image_url,
+                "facebook_image_url" => $image,
                 "episodes_count" => $animation->episodes_count,
                 "season_name" => $animation->season_name,
             ]);
         }
 
-        // $this->info(Animation::get()->count());
+        $this->info(Animation::get()->count());
 
         if ($responseArray->next_page) {
             $this->handle($responseArray->next_page);

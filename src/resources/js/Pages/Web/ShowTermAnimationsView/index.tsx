@@ -1,5 +1,6 @@
 
 import { AnimeCard } from '@/Components/AnimeCard'
+import { getSeasonText } from '@/hooks/anime'
 import { Anime } from '@/types/anime'
 import React from 'react'
 
@@ -18,20 +19,23 @@ export const ShowTermAnimationsView = React.memo<Props>(function ShowTermAnimati
     term,
     animations
 }) {
-    console.log("animations")
-    console.log(animations)
     return (
-        <div className='flex items-center justify-center'>
-            <div className='grid grid-cols-1 gap-2 shadow-sm md:grid-cols-2'>
-                {animations?.map(animation => {
-                    return (
-                        <>
-                            <AnimeCard anime={animation} />
-                        </>
-                    )
-                })}
+        <>
+            <p className='p-4 text-2xl font-bold text-gray-700'>
+                {`${term?.year}年${getSeasonText(term?.season ?? "")}`}シーズン一覧
+            </p>
+            <div className='flex items-center justify-center'>
+                <div className='grid grid-cols-1 gap-2 shadow-sm md:grid-cols-2'>
+                    {animations?.map(animation => {
+                        return (
+                            <>
+                                <AnimeCard anime={animation} />
+                            </>
+                        )
+                    })}
+                </div>
             </div>
-        </div>
+        </>
     )
 
 })

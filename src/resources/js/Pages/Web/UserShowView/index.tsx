@@ -1,4 +1,5 @@
 
+import { getSeasonText } from '@/hooks/anime'
 import { router } from '@inertiajs/react'
 import React, { useCallback, useState } from 'react'
 
@@ -21,16 +22,16 @@ export const UserShowView = React.memo<Props>(function UserShowView({
         // setActiveId(id)
         router.visit(route("web.term.animations", id))
     }
-    const getSeasonText = useCallback((season: string) => {
-        if (season === "spring") return "春"
-        if (season === "summer") return "夏"
-        if (season === "autumn") return "秋"
-        if (season === "winter") return "冬"
-    }, [])
+    // const getSeasonText = useCallback((season: string) => {
+    //     if (season === "spring") return "春"
+    //     if (season === "summer") return "夏"
+    //     if (season === "autumn") return "秋"
+    //     if (season === "winter") return "冬"
+    // }, [])
     return (
         <>
-            <p className='text-2xl font-bold text-gray-700'>
-                UserShowView{user.name}
+            <p className='text-gray-700p-4 p-4 text-2xl font-bold'>
+                アニメシーズン一覧
             </p>
 
             <div className="grid grid-cols-2 gap-4 p-4 sm:grid-cols-4 md:grid-cols-4">
@@ -54,7 +55,7 @@ export const UserShowView = React.memo<Props>(function UserShowView({
                             `}
                     >
                         <span className="text-sm font-medium sm:text-base">
-                            {term.year} - {getSeasonText(term.season)}
+                            {term.year} 年 {getSeasonText(term.season)}
                         </span>
                     </button>
                 ))}
