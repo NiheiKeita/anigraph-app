@@ -66,7 +66,7 @@ class User extends Authenticatable
     }
 
     /**
-     *@return BelongsToMany<Animation>
+     *@return BelongsToMany<Animation, $this>
      */
     public function animations(): BelongsToMany
     {
@@ -74,7 +74,7 @@ class User extends Authenticatable
     }
 
     /**
-     *@return BelongsToMany<Episode>
+     *@return BelongsToMany<Episode, $this>
      */
     public function episodes(): BelongsToMany
     {
@@ -82,7 +82,7 @@ class User extends Authenticatable
     }
 
     /**
-     * @return HasMany<TermRanking>
+     * @return HasMany<TermRanking, $this>
      */
     public function termRankings(): HasMany
     {
@@ -90,7 +90,7 @@ class User extends Authenticatable
     }
 
     /**
-     * @return HasMany<Recommendation>
+     * @return HasMany<Recommendation, $this>
      */
     public function recommendations(): HasMany
     {

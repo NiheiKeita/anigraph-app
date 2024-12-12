@@ -2,14 +2,12 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class TermRanking extends Model
 {
-    use HasFactory;
     use SoftDeletes;
 
     protected $guarded = [
@@ -17,7 +15,7 @@ class TermRanking extends Model
     ];
 
     /**
-     * @return HasMany<WeekRanking>
+     * @return HasMany<WeekRanking, $this>
      */
     public function weekRankings(): HasMany
     {
@@ -25,7 +23,7 @@ class TermRanking extends Model
     }
 
     /**
-     * @return HasMany<Animation>
+     * @return HasMany<Animation, $this>
      */
     public function animations(): HasMany
     {

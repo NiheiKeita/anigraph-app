@@ -2,14 +2,12 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Recommendation extends Model
 {
-    use HasFactory;
     use SoftDeletes;
 
     protected $guarded = [
@@ -17,7 +15,7 @@ class Recommendation extends Model
     ];
 
     /**
-     *@return BelongsTo<Animation, Recommendation>
+     *@return BelongsTo<Animation, $this>
      */
     public function animation(): BelongsTo
     {
@@ -25,7 +23,7 @@ class Recommendation extends Model
     }
 
     /**
-     *@return BelongsTo<User, Recommendation>
+     *@return BelongsTo<User, $this>
      */
     public function user(): BelongsTo
     {
