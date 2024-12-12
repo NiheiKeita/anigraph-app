@@ -11,11 +11,13 @@ class Term extends Model
 {
     use HasFactory;
     use SoftDeletes;
+
     protected $guarded = [
         'id',
     ];
+
     /**
-     *@return HasMany<Animation, $this>
+     *@return HasMany<Animation>
      */
     public function animations(): HasMany
     {

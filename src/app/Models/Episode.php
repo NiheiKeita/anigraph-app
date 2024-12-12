@@ -12,26 +12,29 @@ class Episode extends Model
 {
     use HasFactory;
     use SoftDeletes;
+
     protected $guarded = [
         'id',
     ];
 
     /**
-     *@return BelongsToMany<User, $this>
+     *@return BelongsToMany<User>
      */
     public function users(): BelongsToMany
     {
         return $this->belongsToMany(User::class, 'user_episodes', 'episode_id', 'user_id')->withTimestamps();
     }
+
     /**
-     *@return BelongsToMany<WeekRanking, $this>
+     *@return BelongsToMany<WeekRanking>
      */
     public function weekRankings(): BelongsToMany
     {
         return $this->belongsToMany(WeekRanking::class, 'episode_week_rankings', 'episode_id', 'week_ranking_id')->withTimestamps();
     }
+
     /**
-     *@return BelongsTo<Animation, $this>
+     *@return BelongsTo<Animation, Episode>
      */
     public function animation(): BelongsTo
     {

@@ -17,7 +17,8 @@ class UserController extends Controller
         // dd($codeCheck->getBuildings());
         return Inertia::render('Web/Top');
     }
-    public function show($id): Response
+
+    public function show(int $id): Response
     {
         $user = User::find($id);
         $terms = Term::orderBy('year', 'desc')->get();

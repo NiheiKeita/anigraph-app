@@ -12,26 +12,29 @@ class Animation extends Model
 {
     use HasFactory;
     use SoftDeletes;
+
     protected $guarded = [
         'id',
     ];
 
     /**
-     * @return HasMany<Episode, $this>
+     * @return HasMany<Episode>
      */
     public function episodes(): HasMany
     {
         return $this->hasMany(Episode::class);
     }
+
     /**
-     * @return HasMany<Recommendation   , $this>
+     * @return HasMany<Recommendation>
      */
     public function recommendations(): HasMany
     {
         return $this->hasMany(Recommendation::class);
     }
+
     /**
-     *@return BelongsToMany<User, $this>
+     *@return BelongsToMany<User>
      */
     public function users(): BelongsToMany
     {

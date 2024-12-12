@@ -5,13 +5,10 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\UserRequest;
 use App\Http\Requests\UserUpdate;
-use App\Jobs\SendMail;
-use App\Mail\UserRegisterMail;
 use App\Models\User;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Inertia\Inertia;
 use Inertia\Response;
@@ -38,7 +35,7 @@ class UserController extends Controller
 
     public function store(UserRequest $request): RedirectResponse
     {
-        $user = User::create([
+        User::create([
             'plan_id' => 1,
             'name' => $request->name,
             'email' => $request->email,
@@ -77,10 +74,11 @@ class UserController extends Controller
 
         return redirect(RouteServiceProvider::USERS)->with('message', '更新が完了しました');
     }
-    public function test()
-    {
-        $user = Auth::guard('admin')->user();
-        return response()->json($user->name);
-        // return Auth::guard('admin');
-    }
+
+    // public function test(): mixed
+    // {
+    //     $user = Auth::guard('admin')->user();
+    //     return response()->json($user->name);
+    //     // return Auth::guard('admin');
+    // }
 }

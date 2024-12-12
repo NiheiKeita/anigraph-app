@@ -11,18 +11,21 @@ class TermRanking extends Model
 {
     use HasFactory;
     use SoftDeletes;
+
     protected $guarded = [
         'id',
     ];
+
     /**
-     * @return HasMany<WeekRanking, $this>
+     * @return HasMany<WeekRanking>
      */
     public function weekRankings(): HasMany
     {
         return $this->hasMany(WeekRanking::class);
     }
+
     /**
-     * @return HasMany<Animation, $this>
+     * @return HasMany<Animation>
      */
     public function animations(): HasMany
     {

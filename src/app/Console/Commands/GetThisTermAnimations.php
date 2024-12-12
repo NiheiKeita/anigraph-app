@@ -24,7 +24,7 @@ class GetThisTermAnimations extends Command
     /**
      * Execute the console command.
      */
-    public function handle($page = 1)
+    public function handle(int $page = 1): void
     {
         $terms = $this->argument('term');
         $termId = $this->argument('termId');
@@ -46,8 +46,13 @@ class GetThisTermAnimations extends Command
             return;
         }
         curl_close($ch);
-
-        $responseArray = json_decode($response);
+        if (is_string($response)) {
+            $responseArray = json_decode($response, true); // 配列としてデコード
+        } else {
+            // エラーハンドリング
+            $responseArray = null; // または適切な初期値
+        }
+        // $responseArray = json_decode($response);
         foreach ($responseArray->works as $animation) {
             Animation::firstOrCreate([
                 "term_id" => $termId,
@@ -63,7 +68,7 @@ class GetThisTermAnimations extends Command
             ]);
         }
 
-        $this->info(Animation::get()->count());
+        // $this->info(Animation::get()->count());
 
         if ($responseArray->next_page) {
             $this->handle($responseArray->next_page);

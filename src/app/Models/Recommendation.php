@@ -11,18 +11,21 @@ class Recommendation extends Model
 {
     use HasFactory;
     use SoftDeletes;
+
     protected $guarded = [
         'id',
     ];
+
     /**
-     *@return BelongsTo<Animation, $this>
+     *@return BelongsTo<Animation, Recommendation>
      */
     public function animation(): BelongsTo
     {
         return $this->belongsTo(Animation::class);
     }
+
     /**
-     *@return BelongsTo<User, $this>
+     *@return BelongsTo<User, Recommendation>
      */
     public function user(): BelongsTo
     {

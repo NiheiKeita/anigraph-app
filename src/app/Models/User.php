@@ -64,29 +64,33 @@ class User extends Authenticatable
             }
         });
     }
+
     /**
-     *@return BelongsToMany<Animation, $this>
+     *@return BelongsToMany<Animation>
      */
     public function animations(): BelongsToMany
     {
         return $this->belongsToMany(Animation::class, 'user_animations', 'user_id', 'animation_id')->withTimestamps();
     }
+
     /**
-     *@return BelongsToMany<Episode, $this>
+     *@return BelongsToMany<Episode>
      */
     public function episodes(): BelongsToMany
     {
         return $this->belongsToMany(Episode::class, 'user_episodes', 'user_id', 'episode_id')->withTimestamps();
     }
+
     /**
-     * @return HasMany<TermRanking, $this>
+     * @return HasMany<TermRanking>
      */
     public function termRankings(): HasMany
     {
         return $this->hasMany(TermRanking::class);
     }
+
     /**
-     * @return HasMany<Recommendation, $this>
+     * @return HasMany<Recommendation>
      */
     public function recommendations(): HasMany
     {
