@@ -1,11 +1,18 @@
 import { Anime } from "@/types/anime"
 import React from "react"
+import Button from "../Button"
 
 type Props = {
     anime?: Anime
+    isLogin?: boolean
+    onClickSeeButton?: () => void
+    onClickNotSeeButton?: () => void
 }
 export const AnimeCard = React.memo<Props>(function AnimeCard({
     anime,
+    isLogin = false,
+    onClickSeeButton,
+    onClickNotSeeButton
 }) {
 
     return (
@@ -43,6 +50,12 @@ export const AnimeCard = React.memo<Props>(function AnimeCard({
                     </a>
                 }
             </div>
+            {isLogin && (
+                <>
+                    <Button variant="red" onClick={onClickNotSeeButton}>見てない</Button>
+                    <Button variant="blue" onClick={onClickSeeButton}>見た</Button>
+                </>
+            )}
         </div>
     )
 })
