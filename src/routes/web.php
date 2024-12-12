@@ -11,7 +11,7 @@ use App\Http\Controllers\Web\LoginController;
 use App\Http\Controllers\Web\PasswordController;
 use App\Http\Controllers\Web\UserController;
 
-// use App\Http\Middleware\VerifyCsrfToken;
+use App\Http\Middleware\VerifyCsrfToken;
 
 /*
 |--------------------------------------------------------------------------
@@ -35,7 +35,9 @@ Route::group(['middleware' => 'basicauth'], function () {
     Route::get('/user/{id}', [UserController::class, 'show'])->name('web.user.show');
     Route::get('/term/{id}/animations', [AnimationsController::class, 'showTerm'])->name('web.term.animations');
 
-
+    Route::middleware('guest.web')->group(function () {
+        Route::put('/users/{user_id}/animations/{animation_id}', [AnimationsController::class, 'editUser'])->withoutMiddleware(VerifyCsrfToken::class)->name('web.user.animation');
+    });
 
     Route::middleware('guest.web')->group(function () {
         Route::get('password/edit/{token}', [PasswordController::class, 'edit'])->name('web.password.edit');

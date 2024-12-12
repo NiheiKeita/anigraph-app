@@ -22,12 +22,6 @@ export const UserShowView = React.memo<Props>(function UserShowView({
         // setActiveId(id)
         router.visit(route("web.term.animations", id))
     }
-    // const getSeasonText = useCallback((season: string) => {
-    //     if (season === "spring") return "春"
-    //     if (season === "summer") return "夏"
-    //     if (season === "autumn") return "秋"
-    //     if (season === "winter") return "冬"
-    // }, [])
     return (
         <>
             <p className='text-gray-700p-4 p-4 text-2xl font-bold'>
