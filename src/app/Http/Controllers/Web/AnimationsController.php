@@ -19,11 +19,11 @@ class AnimationsController extends Controller
     public function showTerm(string $id): Response
     {
         $user = Auth::guard('web')->user();
-        $userId =  $user->id;
         $term = Term::find($id);
         $animations = $term->animations;
         $notViewAnimations = [];
         if ($user->id) {
+            $userId =  $user->id;
             $animations = $term->animations()->whereDoesntHave('users', function ($query) use ($userId) {
                 $query->where('users.id', $userId); // 特定の userId と紐づいていない
             })->get();
