@@ -15,6 +15,9 @@ return new class extends Migration
             $table->id();
             $table->timestamps();
             $table->softDeletes();
+
+            $table->bigInteger('animation_id');
+            $table->bigInteger('term_id')->nullable();
         });
     }
 

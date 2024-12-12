@@ -15,6 +15,9 @@ return new class extends Migration
             $table->id();
             $table->timestamps();
             $table->softDeletes();
+
+            $table->bigInteger('episode_id')->nullable();
+            $table->bigInteger('week_ranking_id')->nullable();
         });
     }
 

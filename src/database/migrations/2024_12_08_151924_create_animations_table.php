@@ -18,7 +18,15 @@ return new class extends Migration
 
             $table->bigInteger('term_id')->nullable();
 
-            $table->string('name');
+            $table->text('title')->nullable();
+            $table->text('title_kana')->nullable();
+            $table->text('title_en')->nullable();
+            $table->text('media')->nullable();
+            $table->text('official_site_url')->nullable();
+            $table->text('wikipedia_url')->nullable();
+            $table->text('facebook_image_url')->nullable();
+            $table->integer('episodes_count')->nullable();
+            $table->text('season_name')->nullable();
         });
     }
 

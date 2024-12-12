@@ -11,13 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('user_animations', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
-            $table->softDeletes();
-
-            $table->bigInteger('user_id')->nullable();
-            $table->bigInteger('animation_id')->nullable();
+        Schema::table('user_animations', function (Blueprint $table) {
+            $table->integer('viewing_status')->nullable();
         });
     }
 
@@ -26,6 +21,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('user_animations');
+        Schema::table('user_animations', function (Blueprint $table) {
+            $table->dropColumn('viewing_status');
+        });
     }
 };
