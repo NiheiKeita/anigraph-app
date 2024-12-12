@@ -11,6 +11,7 @@ use App\Models\User;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Inertia\Inertia;
 use Inertia\Response;
@@ -37,22 +38,13 @@ class UserController extends Controller
 
     public function store(UserRequest $request): RedirectResponse
     {
-        // $length = 12;
-        // $randomPassword = bin2hex(random_bytes($length / 2));
-        // $lengthPasswordToken = 16;
-        // $passwordToken = bin2hex(random_bytes($lengthPasswordToken / 2));
-
         $user = User::create([
             'plan_id' => 1,
             'name' => $request->name,
             'email' => $request->email,
-            // 'company' => $request->company,
-            'password' => Hash::make($request->password),
-            // 'password_token' => $passwordToken,
+            'password' => Hash::make("pass"),
             'tel' => $request->tel,
         ]);
-
-        // SendMail::dispatch(new UserRegisterMail($user, $randomPassword));
 
         return redirect(RouteServiceProvider::USERS)->with('message', '登録が完了しました');
     }
@@ -84,5 +76,11 @@ class UserController extends Controller
         ]);
 
         return redirect(RouteServiceProvider::USERS)->with('message', '更新が完了しました');
+    }
+    public function test()
+    {
+        $user = Auth::guard('admin')->user();
+        return response()->json($user->name);
+        // return Auth::guard('admin');
     }
 }

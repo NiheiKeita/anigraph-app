@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\AdminLoginController;
 use App\Http\Controllers\Admin\AdminDashboardController;
 use App\Http\Controllers\Admin\AdminUserController;
 use App\Http\Controllers\Admin\UserController as UserAdminController;
+use App\Http\Controllers\Web\AnimationsController;
 use App\Http\Controllers\Web\TopController;
 use App\Http\Controllers\Web\LoginController;
 use App\Http\Controllers\Web\PasswordController;
@@ -29,7 +30,10 @@ Route::group(['middleware' => 'basicauth'], function () {
     });
 
     Route::get('/', [TopController::class, 'index'])->name('web.top');
-    Route::get('/', [UserController::class, 'index'])->name('web.user.index');
+    // Route::get('/', [UserController::class, 'index'])->name('web.user.index');
+
+    Route::get('/user/{id}', [UserController::class, 'show'])->name('web.user.show');
+    Route::get('/term/{id}/animations', [AnimationsController::class, 'showTerm'])->name('web.term.animations');
 
 
 
@@ -55,5 +59,8 @@ Route::group(['middleware' => 'basicauth'], function () {
         Route::post('admin/users/add', [UserAdminController::class, 'store'])->name('user.store');
         Route::get('admin/users/{id}', [UserAdminController::class, 'edit'])->name('user.edit');
         Route::post('admin/users/{id}', [UserAdminController::class, 'update'])->name('user.update');
+
+
+        Route::get('admin/test', [UserAdminController::class, 'test'])->name('user.test');
     });
 });
