@@ -28,21 +28,20 @@ class AnimationsController extends Controller
     public function editUser(Request $request)
     {
         $user = User::find($request->user_id);
-        $user->animations()->create(
-            [
-                'animation_id' => $request->animation_id
-            ],
-            [
-                'viewing_status' => $request->viewingStatus
-            ]
-        );
-        // $user->animations()->updateExistingPivot($request->animation_id, ['viewing_status' => $request->viewingStatus]);
+        $existingRecord = $user->animations()->where('animation_id', $request->animation_id)->first();
+
+        if ($existingRecord) {
+            // レコードが存在する場合は更新
+            $user->animations()->updateExistingPivot($request->animation_id, [
+                'viewing_status' => $request->viewingStatus,
+                'updated_at' => now(),
+            ]);
+        } else {
+            // レコードが存在しない場合は新規挿入
+            $user->animations()->attach($request->animation_id, [
+                'viewing_status' => $request->viewingStatus,
+            ]);
+        }
         return response()->json($user->name);
-        // dd($terms[0]);
-        // return Inertia::render('Web/ShowTermAnimationsView', [
-        //     'user' => $user,
-        //     'term' => $term,
-        //     'animations' => $term->animations,
-        // ]);
     }
 }
