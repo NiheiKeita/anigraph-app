@@ -16,14 +16,14 @@ use Inertia\Response;
 
 class AnimationsController extends Controller
 {
-    public function showTerm(string $id): Response
+    public function showUserTerm(Request $request): Response
     {
         $user = Auth::guard('web')->user();
-        $term = Term::find($id);
+        $userId = $user->id;
+        $term = Term::find($request->term_id);
         $animations = $term->animations;
         $notViewAnimations = [];
-        if ($user) {
-            $userId =  $user->id;
+        if ($userId == $request->user_id) {
             $animations = $term->animations()->whereDoesntHave('users', function ($query) use ($userId) {
                 $query->where('users.id', $userId); // 特定の userId と紐づいていない
             })->get();

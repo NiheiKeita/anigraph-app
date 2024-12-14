@@ -33,6 +33,8 @@ Route::group(['middleware' => 'basicauth'], function () {
     // Route::get('/', [UserController::class, 'index'])->name('web.user.index');
 
     Route::get('/user/{id}', [UserController::class, 'show'])->name('web.user.show');
+    // Route::get('/user/{user_id}/term/{term_id}/animations', [AnimationsController::class, 'showTerm'])->name('web.term.animations');
+
     Route::get('/term/{id}/animations', [AnimationsController::class, 'showTerm'])->name('web.term.animations');
 
     Route::middleware('guest.web')->group(function () {
@@ -42,6 +44,7 @@ Route::group(['middleware' => 'basicauth'], function () {
     Route::middleware('guest.web')->group(function () {
         Route::get('password/edit/{token}', [PasswordController::class, 'edit'])->name('web.password.edit');
         Route::post('password/edit/{token}', [PasswordController::class, 'update'])->name('web.password.update');
+        Route::get('/user/{user_id}/term/{term_id}/animations/check', [AnimationsController::class, 'showUserTerm'])->name('web.user.term.animations');
     });
     Route::get('login', [LoginController::class, 'create'])->name('user.login');
     Route::post('login', [LoginController::class, 'store']);
