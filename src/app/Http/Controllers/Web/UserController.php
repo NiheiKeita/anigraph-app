@@ -43,7 +43,7 @@ class UserController extends Controller
     public function termShow(Request $request): Response
     {
         $term = Term::where("id", $request->term_id)->first();
-        $user = User::find($id);
+        $user = User::find($request->user_id);
         $notViewAnimations = [];
 
         $userId = $request->user_id;
