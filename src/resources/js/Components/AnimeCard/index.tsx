@@ -19,11 +19,15 @@ export const AnimeCard = React.memo<Props>(function AnimeCard({
 
     return (
         <div className="max-w-md rounded-lg bg-white p-6 shadow-lg transition-transform duration-200 hover:scale-105">
-            <div className=" w-full md:h-44">
+            <div className="w-full rounded-lg bg-gray-100 md:h-44">
                 <img
                     src={anime?.facebook_image_url == '' ? "/imgs/unnamed.jpg" : anime?.facebook_image_url ?? ''}
                     alt={anime?.title ?? ''}
-                    className="max-h-full w-full rounded-lg"
+                    className="max-h-full w-full rounded-lg object-contain"
+                    onError={(e) => {
+                        const target = e.target as HTMLImageElement
+                        target.src = "/imgs/unnamed.jpg" // フォールバック画像
+                    }}
                 />
             </div>
             <h3 className="mt-4 text-sm font-bold">{anime?.title}</h3>
