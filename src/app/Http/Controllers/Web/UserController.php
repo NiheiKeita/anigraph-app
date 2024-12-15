@@ -71,7 +71,6 @@ class UserController extends Controller
                 ->get();
         }
 
-
         return Inertia::render('Web/User/Term/EditViewingStatusView', [
             'user' => $user,
             'term' => $term,

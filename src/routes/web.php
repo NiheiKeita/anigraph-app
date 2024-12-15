@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\AdminLoginController;
 use App\Http\Controllers\Admin\AdminDashboardController;
 use App\Http\Controllers\Admin\AdminUserController;
 use App\Http\Controllers\Admin\UserController as UserAdminController;
+use App\Http\Controllers\Web\AnimationController;
 use App\Http\Controllers\Web\TopController;
 use App\Http\Controllers\Web\LoginController;
 use App\Http\Controllers\Web\PasswordController;
@@ -43,12 +44,12 @@ Route::group(['middleware' => 'basicauth'], function () {
         Route::get('password/edit/{token}', [PasswordController::class, 'edit'])->name('web.password.edit');
         Route::post('password/edit/{token}', [PasswordController::class, 'update'])->name('web.password.update');
 
-        Route::get('/user/{user_id}/term/{term_id}/viewing_status', [TermController::class, 'termEditViewingStatus'])
+        Route::get('/users/{user_id}/terms/{term_id}/edit/viewing_status', [UserController::class, 'termEditViewingStatus'])
             ->name('web.user.term.edit.viewingStatus');
 
-        Route::put('/users/{user_id}/animations/{animation_id}', [TermController::class, 'updateAnimationViewingStatus'])
+        Route::put('/users/{user_id}/animations/{animation_id}', [AnimationController::class, 'updateUserViewingStatus'])
             ->withoutMiddleware(VerifyCsrfToken::class)
-            ->name('web.user.term.update.viewingStatus');
+            ->name('web.animation.update.viewingStatus');
     });
 
 
