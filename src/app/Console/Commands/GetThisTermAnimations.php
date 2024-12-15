@@ -46,8 +46,9 @@ class GetThisTermAnimations extends Command
             return;
         }
         curl_close($ch);
-        $responseArray = json_decode($response);
-        // $responseArray = json_decode($response);
+
+        // TODO
+        $responseArray = json_decode((string) $response);
         foreach ($responseArray->works as $animation) {
             $image = "";
             $recommendedImage = $animation->images->recommended_url;
@@ -77,7 +78,7 @@ class GetThisTermAnimations extends Command
             ]);
         }
 
-        $this->info(Animation::get()->count());
+        // $this->info(Animation::get()->count());
 
         if ($responseArray->next_page) {
             $this->handle($responseArray->next_page);

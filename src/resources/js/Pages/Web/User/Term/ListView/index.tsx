@@ -1,10 +1,12 @@
 
+import { AnimeCard } from '@/Components/AnimeCard'
 import { getSeasonText } from '@/hooks/anime'
+import { Anime } from '@/types/anime'
 import { router } from '@inertiajs/react'
 import React, { useCallback, useState } from 'react'
 
 type Props = {
-    user: any,
+    user?: any,
     terms: {
         id: string,
         year: string,
@@ -12,15 +14,15 @@ type Props = {
     }[]
 }
 
-export const UserShowView = React.memo<Props>(function UserShowView({
+export const ListView = React.memo<Props>(function ListView({
     user,
     terms
 }) {
+
     const [activeId] = useState<string>()
 
-    const handleClick = (id: string) => {
-        // setActiveId(id)
-        router.visit(route("web.term.animations", id))
+    const handleClick = (termId: string) => {
+        router.visit(route("web.user.term.show", { user_id: user?.id, term_id: termId }))
     }
     return (
         <>
@@ -58,4 +60,4 @@ export const UserShowView = React.memo<Props>(function UserShowView({
     )
 
 })
-export default UserShowView
+export default ListView
