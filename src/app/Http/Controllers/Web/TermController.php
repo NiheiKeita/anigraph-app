@@ -5,45 +5,33 @@ namespace App\Http\Controllers\Web;
 use App\Http\Controllers\Controller;
 use App\Models\Term;
 use App\Models\User;
-use App\Models\Animation;
-use Error;
 use Exception;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
 use Inertia\Inertia;
+use Illuminate\Http\Request;
 use Inertia\Response;
 
-class AnimationsController extends Controller
+class TermController extends Controller
 {
-    public function showUserTerm(Request $request): Response
+    public function index(): Response
     {
-        $user = Auth::guard('web')->user();
-        $userId = $user->id;
+        $terms = Term::orderBy('year', 'desc')->get();
+        return Inertia::render('Web/Term/ListView', [
+            'terms' => $terms,
+        ]);
+    }
+    public function show(Request $request): Response
+    {
         $term = Term::find($request->term_id);
         $animations = $term->animations;
         $notViewAnimations = [];
-        if ($userId == $request->user_id) {
-            $animations = $term->animations()->whereDoesntHave('users', function ($query) use ($userId) {
-                $query->where('users.id', $userId); // 特定の userId と紐づいていない
-            })->get();
 
-            $notViewAnimations = $term->animations()
-                ->join('user_animations', 'animations.id', '=', 'user_animations.animation_id')
-                ->whereNull('user_animations.viewing_status') // 中間テーブルの viewing_status が null
-                ->where('user_animations.user_id', $userId)
-                ->get();
-        }
-
-
-        return Inertia::render('Web/ShowTermAnimationsView', [
-            'user' => $user,
+        return Inertia::render('Web/Term/ShowView', [
             'term' => $term,
             'animations' => $animations,
             'notViewAnimations' => $notViewAnimations,
         ]);
     }
-    public function editUser(Request $request)
+    public function updateAnimationViewingStatus(Request $request)
     {
         try {
             $user = User::find($request->user_id);

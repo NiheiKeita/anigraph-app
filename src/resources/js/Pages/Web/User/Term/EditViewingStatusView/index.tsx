@@ -14,7 +14,7 @@ type Props = {
     animations: Anime[]
 }
 
-export const ShowTermAnimationsView = React.memo<Props>(function ShowTermAnimationsView({
+export const EditViewingStatusView = React.memo<Props>(function EditViewingStatusView({
     user,
     term,
     animations
@@ -106,4 +106,4 @@ export const ShowTermAnimationsView = React.memo<Props>(function ShowTermAnimati
     )
 
 })
-export default ShowTermAnimationsView
+export default EditViewingStatusView
