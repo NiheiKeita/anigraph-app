@@ -36,6 +36,7 @@ Route::group(['middleware' => 'basicauth'], function () {
     Route::get('/terms', [TermController::class, 'index'])->name('web.term.list');
     Route::get('/terms/{term_id}', [TermController::class, 'show'])->name('web.term.show');
 
+    Route::get('/users', [UserController::class, 'index'])->name('web.user.list');
     Route::get('/users/{user_id}', [UserController::class, 'show'])->name('web.user.show');
     Route::get('/users/{user_id}/terms', [UserController::class, 'termIndex'])->name('web.user.term.list');
     Route::get('/users/{user_id}/terms/{term_id}', [UserController::class, 'termShow'])->name('web.user.term.show');

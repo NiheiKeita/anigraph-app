@@ -14,10 +14,10 @@ class UserController extends Controller
 {
     public function index(): Response
     {
-        // $codeCheck = new NotionApi();
-        // $codeCheck->getBuildings();
-        // dd($codeCheck->getBuildings());
-        return Inertia::render('Web/Top');
+        $users = User::get();
+        return Inertia::render('Web/User/ListView', [
+            'users' => $users,
+        ]);
     }
 
     public function show(int $id): Response
@@ -39,11 +39,19 @@ class UserController extends Controller
         ]);
     }
 
+    // このシーズンの見たことがあるアニメ一覧画面
     public function termShow(Request $request): Response
     {
         $term = Term::where("id", $request->term_id)->first();
-        $animations = $term->animations;
+        // $animations = $term->animations;
         $notViewAnimations = [];
+
+        $userId = $request->user_id;
+        $animations = $term->animations()
+            ->join('user_animations', 'animations.id', '=', 'user_animations.animation_id')
+            ->where('user_animations.viewing_status', 1) // 中間テーブルの viewing_status が null
+            ->where('user_animations.user_id', $userId)
+            ->get();
 
         return Inertia::render('Web/User/Term/ShowView', [
             'term' => $term,
