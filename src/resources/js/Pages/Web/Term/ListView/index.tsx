@@ -24,17 +24,18 @@ export const ListView = React.memo<Props>(function ListView({
             <p className='text-gray-700p-4 p-4 text-2xl font-bold'>
                 アニメシーズン一覧
             </p>
-            {Object.keys(grouped).map((year) => (
-                <div key={year} className="mb-6">
-                    <h2 className="mb-4 text-lg font-semibold text-gray-900 sm:text-xl">
-                        {year} 年
-                    </h2>
-                    <div className="grid grid-cols-4 gap-4">
-                        {grouped[year].map((term) => (
-                            <button
-                                key={term.id}
-                                onClick={() => handleClick(term.id)}
-                                className={`
+            {Object.keys(grouped)
+                .sort((a, b) => Number(b) - Number(a)).map((year) => (
+                    <div key={year} className="mb-6">
+                        <h2 className="mb-4 text-lg font-semibold text-gray-900 sm:text-xl">
+                            {year} 年
+                        </h2>
+                        <div className="grid grid-cols-4 gap-4">
+                            {grouped[year].map((term) => (
+                                <button
+                                    key={term.id}
+                                    onClick={() => handleClick(term.id)}
+                                    className={`
                                 flex h-16 w-full
                                 transform items-center
                                 justify-center
@@ -45,15 +46,15 @@ export const ListView = React.memo<Props>(function ListView({
                                 hover:scale-105 hover:bg-blue-100
                                 focus:outline-none focus:ring-4 focus:ring-blue-300
                             `}
-                            >
-                                <span className="text-sm font-medium sm:text-base">
-                                    {getSeasonText(term.season)}
-                                </span>
-                            </button>
-                        ))}
+                                >
+                                    <span className="text-sm font-medium sm:text-base">
+                                        {getSeasonText(term.season)}
+                                    </span>
+                                </button>
+                            ))}
+                        </div>
                     </div>
-                </div>
-            ))}
+                ))}
         </div >
     )
 

@@ -9,6 +9,7 @@ export const useTerm = () => {
             acc[term.year].push(term)
             return acc
         }, {})
+
         return items
     }
 
