@@ -12,7 +12,7 @@ class TermController extends Controller
 {
     public function index(): Response
     {
-        $terms = Term::orderBy('year', 'desc')->get();
+        $terms = Term::orderBy('year', 'desc')->orderByRaw("FIELD(season, 'winter', 'spring', 'summer', 'autumn')")->get();
         return Inertia::render('Web/Term/ListView', [
             'terms' => $terms,
         ]);

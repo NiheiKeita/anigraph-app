@@ -64,9 +64,10 @@ class GetThisTermAnimations extends Command
                 $image = $facebookImage;
             }
 
-            Animation::firstOrCreate([
+            Animation::updateOrCreate([
                 "term_id" => $termId,
                 "title" => $animation->title,
+            ], [
                 "title_kana" => $animation->title_kana,
                 "title_en" => $animation->title_en,
                 "media" => $animation->media,
