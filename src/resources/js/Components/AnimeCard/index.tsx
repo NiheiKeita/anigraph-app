@@ -24,14 +24,13 @@ export const AnimeCard = React.memo<Props>(function AnimeCard({
                     src={anime?.facebook_image_url == '' ? "/imgs/unnamed.jpg" : anime?.facebook_image_url ?? ''}
                     alt={anime?.title ?? ''}
                     className="max-h-full w-full rounded-lg object-contain"
-                    onError={(e) => {
-                        const target = e.target as HTMLImageElement
-                        target.src = "/imgs/unnamed.jpg" // フォールバック画像
+                    onError={(event) => {
+                        const target = event.currentTarget
+                        target.src = "/imgs/unnamed.jpg"
                     }}
                 />
             </div>
             <h3 className="mt-4 text-sm font-bold">{anime?.title}</h3>
-            {/* <p className="text-xs text-gray-500">{anime?.title_kana}</p> */}
             <p className="mt-2 text-xs">メディア: {anime?.media}</p>
             <p className="mt-2 text-xs">シーズン: {anime?.season_name}</p>
             <div className="mt-4 flex justify-between text-xs">

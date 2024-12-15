@@ -2,14 +2,11 @@
 import { AnimeCard } from '@/Components/AnimeCard'
 import { getSeasonText } from '@/hooks/anime'
 import { Anime } from '@/types/anime'
-import React, { useCallback, useState } from 'react'
+import { Term } from '@/types/term'
+import React from 'react'
 
 type Props = {
-    term?: {
-        id: string,
-        year: string,
-        season: string
-    },
+    term?: Term,
     animations: Anime[]
 }
 

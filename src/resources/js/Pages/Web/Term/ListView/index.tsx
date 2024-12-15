@@ -1,17 +1,10 @@
 
-import { AnimeCard } from '@/Components/AnimeCard'
 import { getSeasonText } from '@/hooks/anime'
 import { useTerm } from '@/hooks/useTerm'
-import { Anime } from '@/types/anime'
+import { Term } from '@/types/term'
 import { router } from '@inertiajs/react'
-import React, { useCallback, useState } from 'react'
+import React from 'react'
 
-
-type Term = {
-    id: string,
-    year: string,
-    season: string
-}
 type Props = {
     terms: Term[]
 }
