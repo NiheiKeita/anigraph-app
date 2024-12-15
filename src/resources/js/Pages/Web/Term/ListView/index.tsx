@@ -26,12 +26,9 @@ export const ListView = React.memo<Props>(function ListView({
             </p>
             {Object.keys(grouped).map((year) => (
                 <div key={year} className="mb-6">
-                    {/* Year Header */}
                     <h2 className="mb-4 text-lg font-semibold text-gray-900 sm:text-xl">
                         {year} 年
                     </h2>
-
-                    {/* Seasons Buttons */}
                     <div className="grid grid-cols-4 gap-4">
                         {grouped[year].map((term) => (
                             <button
