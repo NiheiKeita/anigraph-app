@@ -16,6 +16,12 @@ export const Top = React.memo(function Top() {
             >
                 ユーザ一覧ページへ
             </Button>
+            <Button
+                className='ml-4 w-fit'
+                onClick={() => router.visit(route('web.term.list'))}
+            >
+                シーズン一覧ページへ
+            </Button>
         </>
     )
 

@@ -43,7 +43,7 @@ class UserController extends Controller
     public function termShow(Request $request): Response
     {
         $term = Term::where("id", $request->term_id)->first();
-        // $animations = $term->animations;
+        $user = User::find($id);
         $notViewAnimations = [];
 
         $userId = $request->user_id;
@@ -54,6 +54,7 @@ class UserController extends Controller
             ->get();
 
         return Inertia::render('Web/User/Term/ShowView', [
+            'user' => $user,
             'term' => $term,
             'animations' => $animations,
             'notViewAnimations' => $notViewAnimations,

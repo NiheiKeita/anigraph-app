@@ -7,9 +7,10 @@ import BackButtonAndTitle from '@/Components/BackButtonAndTitle'
 import AdminLayout from '@/Layouts/AdminLayout'
 import { useUserUpdate } from './hooks'
 import PlanSelector from './components/PlanSelector'
+import { User } from '../AdminUserList/types'
 
 type Props = {
-    user?: any,
+    user?: User,
 }
 
 export const UserUpdate = React.memo<Props>(function UserUpdate({

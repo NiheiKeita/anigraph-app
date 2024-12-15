@@ -7,9 +7,10 @@ import React from 'react'
 import BackButtonAndTitle from '@/Components/BackButtonAndTitle'
 import AdminLayout from '@/Layouts/AdminLayout'
 import { usePasswordEdit } from './hooks'
+import { User } from '@/types/user'
 
 type Props = {
-    user?: any
+    user?: User
 }
 
 export const PasswordEdit = React.memo<Props>(function PasswordEdit({

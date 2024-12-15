@@ -1,16 +1,11 @@
 
-import { AnimeCard } from '@/Components/AnimeCard'
 import Button from '@/Components/Button'
-import { getSeasonText } from '@/hooks/anime'
-import { Anime } from '@/types/anime'
+import { User } from '@/types/user'
 import { router } from '@inertiajs/react'
 import React, { useCallback, useState } from 'react'
 
 type Props = {
-    users?: {
-        id: string,
-        name: string,
-    }[],
+    users?: User[],
 }
 
 export const ListView = React.memo<Props>(function ListView({

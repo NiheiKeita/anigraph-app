@@ -14,8 +14,7 @@ export const Default: Story = {
     args: {
         user: {
             id: "1",
-            year: "2024",
-            season: "spring"
+            name: "2024",
         },
     },
 }

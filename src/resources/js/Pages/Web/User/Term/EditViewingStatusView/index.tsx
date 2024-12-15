@@ -2,15 +2,13 @@
 import { AnimeCard } from '@/Components/AnimeCard'
 import { getSeasonText } from '@/hooks/anime'
 import { Anime } from '@/types/anime'
+import { Term } from '@/types/term'
+import { User } from '@/types/user'
 import React, { useCallback, useState } from 'react'
 
 type Props = {
-    user?: any,
-    term?: {
-        id: string,
-        year: string,
-        season: string
-    },
+    user?: User,
+    term?: Term,
     animations: Anime[]
 }
 
@@ -25,7 +23,7 @@ export const EditViewingStatusView = React.memo<Props>(function EditViewingStatu
     const handleClickSeeButton = useCallback(async (animeId: number) => {
         setLoadingIds(prev => [...new Set([...(prev ?? []), animeId])])
         try {
-            const response = await fetch(`/users/${user.id}/animations/${animeId}`, {
+            const response = await fetch(`/users/${user?.id}/animations/${animeId}`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',
@@ -55,7 +53,7 @@ export const EditViewingStatusView = React.memo<Props>(function EditViewingStatu
     const handleClickNotSeeButton = useCallback(async (animeId: number) => {
         setLoadingIds(prev => [...new Set([...(prev ?? []), animeId])])
         try {
-            const response = await fetch(`/users/${user.id}/animations/${animeId}`, {
+            const response = await fetch(`/users/${user?.id}/animations/${animeId}`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',

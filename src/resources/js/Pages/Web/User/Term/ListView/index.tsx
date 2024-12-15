@@ -2,14 +2,17 @@
 import { getSeasonText } from '@/hooks/anime'
 import { useTerm } from '@/hooks/useTerm'
 import { Term } from '@/types/term'
+import { User } from '@/types/user'
 import { router } from '@inertiajs/react'
 import React from 'react'
 
 type Props = {
+    user?: User,
     terms: Term[]
 }
 
 export const ListView = React.memo<Props>(function ListView({
+    user,
     terms
 }) {
     const { groupedTerms } = useTerm()
@@ -22,7 +25,7 @@ export const ListView = React.memo<Props>(function ListView({
     return (
         <div className='p-4'>
             <p className='text-gray-700p-4 p-4 text-2xl font-bold'>
-                アニメシーズン一覧
+                {user?.name}が見たアニメ(シーズン一覧)
             </p>
             {Object.keys(grouped).map((year) => (
                 <div key={year} className="mb-6">
