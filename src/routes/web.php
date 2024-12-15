@@ -10,7 +10,6 @@ use App\Http\Controllers\Web\LoginController;
 use App\Http\Controllers\Web\PasswordController;
 use App\Http\Controllers\Web\UserController;
 use App\Http\Controllers\Web\TermController;
-
 use App\Http\Middleware\VerifyCsrfToken;
 
 /*
@@ -44,9 +43,12 @@ Route::group(['middleware' => 'basicauth'], function () {
         Route::get('password/edit/{token}', [PasswordController::class, 'edit'])->name('web.password.edit');
         Route::post('password/edit/{token}', [PasswordController::class, 'update'])->name('web.password.update');
 
-        Route::get('/user/{user_id}/term/{term_id}/viewing_status', [TermController::class, 'termEditViewingStatus'])->name('web.user.term.edit.viewingStatus');
+        Route::get('/user/{user_id}/term/{term_id}/viewing_status', [TermController::class, 'termEditViewingStatus'])
+            ->name('web.user.term.edit.viewingStatus');
 
-        Route::put('/users/{user_id}/animations/{animation_id}', [TermController::class, 'updateAnimationViewingStatus'])->withoutMiddleware(VerifyCsrfToken::class)->name('web.user.term.update.viewingStatus');
+        Route::put('/users/{user_id}/animations/{animation_id}', [TermController::class, 'updateAnimationViewingStatus'])
+            ->withoutMiddleware(VerifyCsrfToken::class)
+            ->name('web.user.term.update.viewingStatus');
     });
 
 

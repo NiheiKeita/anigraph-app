@@ -7,10 +7,8 @@ use App\Models\Term;
 use App\Models\User;
 use Inertia\Inertia;
 use Inertia\Response;
-use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-
 
 class UserController extends Controller
 {
@@ -40,9 +38,10 @@ class UserController extends Controller
             'terms' => $terms,
         ]);
     }
+
     public function termShow(Request $request): Response
     {
-        $term = Term::find($request->term_id);
+        $term = Term::where("id", $request->term_id)->first();
         $animations = $term->animations;
         $notViewAnimations = [];
 
@@ -52,11 +51,12 @@ class UserController extends Controller
             'notViewAnimations' => $notViewAnimations,
         ]);
     }
+
     public function termEditViewingStatus(Request $request): Response
     {
         $user = Auth::guard('web')->user();
         $userId = $user->id;
-        $term = Term::find($request->term_id);
+        $term = Term::where("id", $request->term_id)->first();
         $animations = $term->animations;
         $notViewAnimations = [];
         if ($userId == $request->user_id) {

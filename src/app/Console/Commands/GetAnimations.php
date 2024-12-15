@@ -34,7 +34,6 @@ class GetAnimations extends Command
         // 年と季節の組み合わせでArtisanコマンドを呼び出す
         foreach ($years as $year) {
             foreach ($seasons as $season) {
-
                 $term = Term::firstOrCreate([
                     "year" => $year,
                     "season" => $season,

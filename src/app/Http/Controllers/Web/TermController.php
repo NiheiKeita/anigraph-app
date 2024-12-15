@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Term;
 use App\Models\User;
 use Exception;
+use Illuminate\Http\JsonResponse;
 use Inertia\Inertia;
 use Illuminate\Http\Request;
 use Inertia\Response;
@@ -19,9 +20,10 @@ class TermController extends Controller
             'terms' => $terms,
         ]);
     }
+
     public function show(Request $request): Response
     {
-        $term = Term::find($request->term_id);
+        $term = Term::where("id", $request->term_id)->first();
         $animations = $term->animations;
         $notViewAnimations = [];
 
@@ -31,10 +33,11 @@ class TermController extends Controller
             'notViewAnimations' => $notViewAnimations,
         ]);
     }
-    public function updateAnimationViewingStatus(Request $request)
+
+    public function updateAnimationViewingStatus(Request $request): JsonResponse
     {
         try {
-            $user = User::find($request->user_id);
+            $user = User::where("id", $request->user_id)->first();
             $existingRecord = $user->animations()->where('animation_id', $request->animation_id)->first();
 
             // return response()->json([
