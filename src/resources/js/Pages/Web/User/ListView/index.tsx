@@ -13,7 +13,7 @@ export const ListView = React.memo<Props>(function ListView({
 }) {
 
     return (
-        <>
+        <div className='p-2'>
             <p className='p-4 text-2xl font-bold text-gray-700'>
                 user一覧
             </p>
@@ -31,7 +31,7 @@ export const ListView = React.memo<Props>(function ListView({
                     )
                 })
             }
-        </>
+        </div>
     )
 
 })

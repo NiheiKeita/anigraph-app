@@ -58,7 +58,7 @@ export const EditView = React.memo<Props>(function EditView({
     }, [])
 
     return (
-        <>
+        <div className='p-2'>
             <p className='p-4 text-2xl font-bold text-gray-700'>
                 見たことあるアニメランキング(編集)
             </p>
@@ -77,7 +77,7 @@ export const EditView = React.memo<Props>(function EditView({
                     })}
                 </div>
             </div>
-        </>
+        </div>
     )
 
 })

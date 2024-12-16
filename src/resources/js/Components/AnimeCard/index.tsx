@@ -33,6 +33,7 @@ export const AnimeCard = React.memo<Props>(function AnimeCard({
             <h3 className="mt-4 text-sm font-bold">{anime?.title}</h3>
             <p className="mt-2 text-xs">メディア: {anime?.media}</p>
             <p className="mt-2 text-xs">シーズン: {anime?.season_name}</p>
+            <p className="mt-2 text-xs">評価: {anime?.pivot?.evaluation ?? "-"}</p>
             <div className="mt-2 flex justify-between text-xs">
                 {anime?.official_site_url &&
                     <a
