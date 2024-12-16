@@ -98,4 +98,15 @@ class UserController extends Controller
             'notViewAnimations' => $notViewAnimations,
         ]);
     }
+
+    public function userAnimationEvaluationEdit(): Response
+    {
+        $user = Auth::guard('web')->user();
+        $animations = $user->animations()->wherePivot('viewing_status', 1)->get();
+
+        return Inertia::render('Web/User/AnimationRank/EditView', [
+            'user' => $user,
+            'animations' => $animations,
+        ]);
+    }
 }
