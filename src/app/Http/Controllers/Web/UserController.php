@@ -110,9 +110,9 @@ class UserController extends Controller
         ]);
     }
 
-    public function userAnimationEvaluationShow(): Response
+    public function userAnimationEvaluationShow(Request $request): Response
     {
-        $user = Auth::guard('web')->user();
+        $user = User::where("id", $request->user_id)->first();
         $animations = $user->animations()->wherePivot('viewing_status', 1)->get();
 
         return Inertia::render('Web/User/AnimationRank/ShowView', [
