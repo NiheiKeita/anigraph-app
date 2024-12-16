@@ -1,19 +1,20 @@
 import { Anime } from "@/types/anime"
 import React from "react"
 import Button from "../Button"
+import { evaluations } from "@/config/evaluation"
 
 type Props = {
     anime?: Anime
-    isLogin?: boolean
     onClickSeeButton?: () => void
     onClickNotSeeButton?: () => void
+    onClickEvaluation: (evaluation: string) => void
     isLoading: boolean
 }
-export const AnimeCard = React.memo<Props>(function AnimeCard({
+export const AnimeEditCard = React.memo<Props>(function AnimeEditCard({
     anime,
-    isLogin = false,
     onClickSeeButton,
     onClickNotSeeButton,
+    onClickEvaluation,
     isLoading = false
 }) {
 
@@ -33,6 +34,7 @@ export const AnimeCard = React.memo<Props>(function AnimeCard({
             <h3 className="mt-4 text-sm font-bold">{anime?.title}</h3>
             <p className="mt-2 text-xs">メディア: {anime?.media}</p>
             <p className="mt-2 text-xs">シーズン: {anime?.season_name}</p>
+            <p className="mt-2 text-xs">評価: {anime?.pivot?.evaluation ?? "-"}</p>
             <div className="mt-2 flex justify-between text-xs">
                 {anime?.official_site_url &&
                     <a
@@ -55,7 +57,7 @@ export const AnimeCard = React.memo<Props>(function AnimeCard({
                     </a>
                 }
             </div>
-            {isLogin && (
+            {!anime?.pivot?.viewing_status && (
                 <div className="mt-2 flex gap-1 p-1">
                     {isLoading && <>送信中....</>}
                     {!isLoading && (
@@ -65,8 +67,28 @@ export const AnimeCard = React.memo<Props>(function AnimeCard({
                         </>
                     )}
                 </div>
-            )
-            }
+            )}
+            <div className="mt-2 flex gap-1 p-1">
+                {isLoading && <>送信中....</>}
+                {!isLoading && (
+                    <div className="grid grid-cols-4 gap-1">
+                        {evaluations.map(evaluation => {
+                            return (
+                                <Button
+                                    key={evaluation}
+                                    className="!px-2 !py-1"
+                                    variant={evaluation === anime?.pivot?.evaluation ? "attention"
+                                        : ["SSS", "SS", "S", "A"].includes(evaluation) ? "blue" : "red"}
+                                    onClick={() => onClickEvaluation(evaluation)}
+                                    disabled={evaluation === anime?.pivot?.evaluation}
+                                >
+                                    {evaluation}
+                                </Button>
+                            )
+                        })}
+                    </div>
+                )}
+            </div>
         </div >
     )
 })

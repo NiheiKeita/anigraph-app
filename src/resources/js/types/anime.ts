@@ -8,4 +8,8 @@ export type Anime = {
     wikipedia_url: string,
     facebook_image_url: string,
     season_name: string,
+    pivot?: {
+        evaluation?: string,
+        viewing_status?: string,
+    }
 }
