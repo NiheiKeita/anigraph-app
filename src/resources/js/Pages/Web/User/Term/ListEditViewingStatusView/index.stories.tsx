@@ -2,7 +2,7 @@ import { Meta, StoryObj } from '@storybook/react'
 import ListView from '.'
 
 const meta: Meta<typeof ListView> = {
-    title: 'views/Web/User/Term/ListView',
+    title: 'views/Web/User/Term/ListEditViewingStatusView',
     component: ListView,
     tags: ['autodocs'],
 }
