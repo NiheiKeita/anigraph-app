@@ -23,7 +23,7 @@ export const ListView = React.memo<Props>(function ListView({
     }
 
     return (
-        <div className='p-4'>
+        <div className='p-2'>
             <p className='text-gray-700p-4 p-4 text-2xl font-bold'>
                 {user?.name}が見たアニメ(シーズン一覧)
             </p>

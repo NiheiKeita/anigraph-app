@@ -19,7 +19,7 @@ export const ShowView = React.memo<Props>(function ShowView({
 }) {
 
     return (
-        <>
+        <div className='p-2'>
             <p className='p-4 text-2xl font-bold text-gray-700'>
                 {`${term?.year}年${getSeasonText(term?.season ?? "")}`}シーズン {user?.name}が見たアニメ一覧
             </p>
@@ -38,7 +38,7 @@ export const ShowView = React.memo<Props>(function ShowView({
                     })}
                 </div>
             </div>
-        </>
+        </div>
     )
 
 })
