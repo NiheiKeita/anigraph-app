@@ -47,12 +47,17 @@ Route::group(['middleware' => 'basicauth'], function () {
 
         Route::get('/users/{user_id}/terms/{term_id}/edit/viewing_status', [UserController::class, 'termEditViewingStatus'])
             ->name('web.user.term.edit.viewingStatus');
+
         Route::get('/users/{user_id}/terms/edit/viewing_status', [UserController::class, 'listEditViewingStatusView'])
             ->name('web.user.term.edit.list.viewingStatus');
 
+        //API
         Route::put('/users/{user_id}/animations/{animation_id}', [AnimationController::class, 'updateUserViewingStatus'])
             ->withoutMiddleware(VerifyCsrfToken::class)
             ->name('web.animation.update.viewingStatus');
+        Route::put('/users/{user_id}/animations/{animation_id}/evaluation', [AnimationController::class, 'updateUserEvaluation'])
+            ->withoutMiddleware(VerifyCsrfToken::class)
+            ->name('web.animations.update.evaluation');
     });
 
 

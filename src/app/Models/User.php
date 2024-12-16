@@ -71,7 +71,7 @@ class User extends Authenticatable
     public function animations(): BelongsToMany
     {
         return $this->belongsToMany(Animation::class, 'user_animations', 'user_id', 'animation_id')
-            ->withPivot('viewing_status')
+            ->withPivot('viewing_status', 'evaluation')
             ->withTimestamps();
     }
 

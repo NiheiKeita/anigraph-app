@@ -5,7 +5,7 @@ type Props = React.ButtonHTMLAttributes<HTMLButtonElement> & {
     children: React.ReactNode,
     className?: string,
     disabled?: boolean,
-    variant?: "default" | "blue" | "red"
+    variant?: "default" | "blue" | "red" | "attention"
 }
 
 export const Button = React.memo<Props>(function Button({
@@ -24,6 +24,8 @@ export const Button = React.memo<Props>(function Button({
                 return ' bg-theme  text-white border-gray-500 hover:opacity-90'
             case 'red':
                 return ' bg-red-500 border text-white border-gray-500 hover:opacity-90'
+            case 'attention':
+                return ' bg-yellow-500 text-black border-2 border-red-500 hover:bg-yellow-600 hover:shadow-lg animate-pulse'
         }
     })()
 

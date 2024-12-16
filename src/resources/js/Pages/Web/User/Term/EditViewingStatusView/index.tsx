@@ -94,7 +94,8 @@ export const EditViewingStatusView = React.memo<Props>(function EditViewingStatu
                                     onClickSeeButton={() => handleClickSeeButton(anime.id)}
                                     onClickNotSeeButton={() => handleClickNotSeeButton(anime.id)}
                                     anime={anime}
-                                    isLoading={loadingIds.includes(anime.id)} />
+                                    isLoading={loadingIds.includes(anime.id)}
+                                />
                             </>
                         )
                     })}
