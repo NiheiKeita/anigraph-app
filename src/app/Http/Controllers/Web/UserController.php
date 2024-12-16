@@ -61,7 +61,7 @@ class UserController extends Controller
         ]);
     }
 
-    public function ListEditViewingStatusView(Request $request): Response
+    public function listEditViewingStatusView(Request $request): Response
     {
         $terms = Term::orderBy('year', 'desc')->get();
         $user = User::find($request->user_id);
