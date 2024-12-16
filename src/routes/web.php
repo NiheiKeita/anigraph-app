@@ -47,6 +47,8 @@ Route::group(['middleware' => 'basicauth'], function () {
 
         Route::get('/users/{user_id}/terms/{term_id}/edit/viewing_status', [UserController::class, 'termEditViewingStatus'])
             ->name('web.user.term.edit.viewingStatus');
+        Route::get('/users/{user_id}/terms/edit/viewing_status', [UserController::class, 'ListEditViewingStatusView'])
+            ->name('web.user.term.edit.list.viewingStatus');
 
         Route::put('/users/{user_id}/animations/{animation_id}', [AnimationController::class, 'updateUserViewingStatus'])
             ->withoutMiddleware(VerifyCsrfToken::class)
