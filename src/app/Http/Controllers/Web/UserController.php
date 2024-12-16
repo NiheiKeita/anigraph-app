@@ -61,6 +61,17 @@ class UserController extends Controller
         ]);
     }
 
+    public function ListEditViewingStatusView(Request $request): Response
+    {
+        $terms = Term::orderBy('year', 'desc')->get();
+        $user = User::find($request->user_id);
+
+        return Inertia::render('Web/User/Term/ListEditViewingStatusView', [
+            'user' => $user,
+            'terms' => $terms,
+        ]);
+    }
+
     public function termEditViewingStatus(Request $request): Response
     {
         $user = Auth::guard('web')->user();

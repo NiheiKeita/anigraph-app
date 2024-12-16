@@ -33,13 +33,13 @@ export const AnimeCard = React.memo<Props>(function AnimeCard({
             <h3 className="mt-4 text-sm font-bold">{anime?.title}</h3>
             <p className="mt-2 text-xs">メディア: {anime?.media}</p>
             <p className="mt-2 text-xs">シーズン: {anime?.season_name}</p>
-            <div className="mt-4 flex justify-between text-xs">
+            <div className="mt-2 flex justify-between text-xs">
                 {anime?.official_site_url &&
                     <a
                         href={anime.official_site_url}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="text-pink-500 hover:underline"
+                        className="text-blue-500 hover:underline"
                     >
                         公式サイト
                     </a>
@@ -49,22 +49,22 @@ export const AnimeCard = React.memo<Props>(function AnimeCard({
                         href={anime.wikipedia_url}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="text-pink-500 hover:underline"
+                        className="text-blue-500 hover:underline"
                     >
                         Wikipedia
                     </a>
                 }
             </div>
             {isLogin && (
-                <>
+                <div className="mt-2 flex gap-1 p-1">
                     {isLoading && <>isLoading....</>}
                     {!isLoading && (
                         <>
-                            <Button variant="red" onClick={onClickNotSeeButton}>見てない</Button>
-                            <Button variant="blue" onClick={onClickSeeButton}>見た</Button>
+                            <Button className="!px-2 !py-1" variant="red" onClick={onClickNotSeeButton}>見てない</Button>
+                            <Button className="!px-2 !py-1" variant="blue" onClick={onClickSeeButton}>見た</Button>
                         </>
                     )}
-                </>
+                </div>
             )
             }
         </div >

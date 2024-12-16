@@ -1,5 +1,6 @@
 
 import Button from '@/Components/Button'
+import { useAuth } from '@/hooks/useAuth'
 import { User } from '@/types/user'
 import { router } from '@inertiajs/react'
 import React from 'react'
@@ -11,6 +12,7 @@ type Props = {
 export const ShowView = React.memo<Props>(function ShowView({
     user
 }) {
+    const { authUser } = useAuth()
 
     return (
         <div>
@@ -22,6 +24,13 @@ export const ShowView = React.memo<Props>(function ShowView({
                     {user?.name}が見たアニメを見る(シーズン一覧)
                 </Button>
             </div>
+            {authUser?.id && authUser?.id === user?.id &&
+                <div>
+                    <Button className='ml-4 w-fit' onClick={() => router.visit(route('web.user.term.edit.list.viewingStatus', user?.id))}>
+                        視聴アニメを編集する
+                    </Button>
+                </div>
+            }
         </div>
     )
 
