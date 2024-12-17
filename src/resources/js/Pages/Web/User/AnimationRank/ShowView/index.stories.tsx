@@ -1,5 +1,5 @@
 import { Meta, StoryObj } from '@storybook/react'
-import EditView from '.'
+import ShowView from '.'
 
 const meta: Meta<typeof ShowView> = {
     title: 'views/Web/User/AnimationRank/ShowView',
