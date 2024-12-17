@@ -7,12 +7,14 @@ import React from 'react'
 
 type Props = {
     user?: User,
+    authUser?: User,
 }
 
 export const ShowView = React.memo<Props>(function ShowView({
-    user
+    user,
+    authUser
 }) {
-    const { authUser } = useAuth()
+    // const { authUser } = useAuth()
 
     return (
         <div className='p-2'>

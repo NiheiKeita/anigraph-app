@@ -25,6 +25,7 @@ class UserController extends Controller
         $user = User::find($id);
         return Inertia::render('Web/User/ShowView', [
             'user' => $user,
+            'authUser' => Auth::guard('web')->user(),
         ]);
     }
 
