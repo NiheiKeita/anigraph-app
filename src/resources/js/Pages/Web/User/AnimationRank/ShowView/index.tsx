@@ -13,7 +13,7 @@ type Props = {
     animations: Anime[]
 }
 
-export const EditView = React.memo<Props>(function EditView({
+export const ShowView = React.memo<Props>(function ShowView({
     user,
     animations
 }) {
@@ -67,4 +67,4 @@ export const EditView = React.memo<Props>(function EditView({
     )
 
 })
-export default EditView
+export default ShowView

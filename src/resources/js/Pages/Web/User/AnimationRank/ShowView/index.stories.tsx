@@ -1,9 +1,9 @@
 import { Meta, StoryObj } from '@storybook/react'
 import EditView from '.'
 
-const meta: Meta<typeof EditView> = {
-    title: 'views/Web/User/AnimationRank/EditView',
-    component: EditView,
+const meta: Meta<typeof ShowView> = {
+    title: 'views/Web/User/AnimationRank/ShowView',
+    component: ShowView,
     tags: ['autodocs'],
 }
 export default meta
