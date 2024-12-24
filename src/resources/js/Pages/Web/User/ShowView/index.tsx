@@ -1,6 +1,5 @@
 
 import Button from '@/Components/Button'
-import { useAuth } from '@/hooks/useAuth'
 import { User } from '@/types/user'
 import { router } from '@inertiajs/react'
 import React from 'react'
@@ -14,8 +13,6 @@ export const ShowView = React.memo<Props>(function ShowView({
     user,
     authUser
 }) {
-    // const { authUser } = useAuth()
-
     return (
         <div className='p-2'>
             <p className='p-4 text-2xl font-bold text-gray-700'>
