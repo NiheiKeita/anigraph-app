@@ -48,8 +48,6 @@ class GetAnimationEpisodes extends Command
         }
         curl_close($ch);
 
-
-        // TODO
         $responseArray = json_decode((string) $response);
         foreach ($responseArray->episodes as $episode) {
             $animation->episodes()->updateOrCreate([
@@ -63,6 +61,7 @@ class GetAnimationEpisodes extends Command
             ]);
         }
 
+        // NOTE: ページネーションで二十五個以上のエピソードがある場合、次のページを取得する
         if ($responseArray->next_page) {
             $this->handle($responseArray->next_page);
         }
