@@ -5,7 +5,7 @@ namespace App\Console\Commands;
 use App\Models\Animation;
 use Illuminate\Console\Command;
 
-class GetAnimations extends Command
+class GetAnimationEpisodes extends Command
 {
     /**
      * The name and signature of the console command.
