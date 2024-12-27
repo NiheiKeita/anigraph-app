@@ -68,6 +68,9 @@ class GetThisTermAnimations extends Command
                 "term_id" => $termId,
                 "title" => $animation->title,
             ], [
+                "anict_id" => $animation->id,
+                "mal_anime_id" => $animation->mal_anime_id,
+                "syobocal_tid" => $animation->syobocal_tid,
                 "title_kana" => $animation->title_kana,
                 "title_en" => $animation->title_en,
                 "media" => $animation->media,
