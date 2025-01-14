@@ -23,31 +23,31 @@ class GetTermAnimations extends Command
      */
     protected $description = 'Command description';
 
-
-    private function getYear($year, $season)
+    private function getYear(int $year, string $season): int
     {
         if ($season === "winter") {
             return $year + 1;
         }
         return $year;
     }
+
     /**
      * Execute the console command.
      */
     public function handle(): void
     {
         // 現在の年を取得
-        $year = date("Y");
+        $year = (int) date("Y");
         // 現在の月を取得して、現在のseasonsを取得
-        $month = date("m");
+        $month = (int) date("m");
         $seasons = ["winter", "spring", "summer", "autumn", "winter", "spring", "summer", "autumn"];
-        if ($month >= 1 && $month <= 3) {
+        if ($month <= 3) {
             $season = $seasons[0];
-        } elseif ($month >= 4 && $month <= 6) {
+        } elseif ($month <= 6) {
             $season = $seasons[1];
-        } elseif ($month >= 7 && $month <= 9) {
+        } elseif ($month <= 9) {
             $season = $seasons[2];
-        } elseif ($month >= 10 && $month <= 12) {
+        } else {
             $season = $seasons[3];
         }
 
