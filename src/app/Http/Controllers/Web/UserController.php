@@ -31,7 +31,7 @@ class UserController extends Controller
 
     public function termIndex(int $id): Response
     {
-        $terms = Term::orderBy('year', 'desc')->get();
+        $terms = Term::orderBy('year', 'desc')->orderByRaw("FIELD(season, 'winter', 'spring', 'summer', 'autumn')")->get();
         $user = User::find($id);
 
         return Inertia::render('Web/User/Term/ListView', [
@@ -64,7 +64,7 @@ class UserController extends Controller
 
     public function listEditViewingStatusView(Request $request): Response
     {
-        $terms = Term::orderBy('year', 'desc')->get();
+        $terms = Term::orderBy('year', 'desc')->orderByRaw("FIELD(season, 'winter', 'spring', 'summer', 'autumn')")->get();
         $user = User::find($request->user_id);
 
         return Inertia::render('Web/User/Term/ListEditViewingStatusView', [
