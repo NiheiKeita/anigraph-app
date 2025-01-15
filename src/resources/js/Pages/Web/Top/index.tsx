@@ -103,12 +103,12 @@ export const Top = React.memo(function Top() {
                         Anigraphは、アニメのランキングを作成し、シーズンごとのアニメをチェックして、自分のランキングの変化をグラフで楽しめるプラットフォームです。
                     </p>
 
-                    <Button
+                    <button
                         className="rounded-lg border-none bg-pink-500 px-8 py-3 text-white shadow-md hover:bg-pink-600"
                         onClick={() => router.visit(route('web.term.list'))}
                     >
                         アニメシーズン一覧を見る
-                    </Button>
+                    </button>
                 </div>
             </section>
 
@@ -154,18 +154,18 @@ export const Top = React.memo(function Top() {
                         あなたのアニメランキングを作成して、楽しさを共有しましょう。
                     </p>
                     <div className="grid justify-center justify-items-center gap-2 md:flex md:space-x-4">
-                        <Button
+                        <button
                             className="rounded-lg border-none bg-pink-500 px-8 py-3 text-white shadow-md hover:bg-pink-600"
                             onClick={() => router.visit(route('web.term.list'))}
                         >
                             アニメシーズン一覧を見る
-                        </Button>
-                        <Button
+                        </button>
+                        <button
                             className="rounded-lg border-none bg-pink-500 px-8 py-3 text-white shadow-md hover:bg-pink-600"
                             onClick={() => router.visit(route('web.user.list'))}
                         >
                             ユーザ一覧
-                        </Button>
+                        </button>
                     </div>
                 </div>
             </section>
@@ -176,26 +176,6 @@ export const Top = React.memo(function Top() {
             </footer>
         </div>
     )
-    // return (
-    //     <>
-    //         <p className='text-2xl font-bold text-gray-700'>
-    //             Top
-    //         </p>
-
-    //         <Button
-    //             className='ml-4 w-fit'
-    //             onClick={() => router.visit(route('web.user.list'))}
-    //         >
-    //             ユーザ一覧ページへ
-    //         </Button>
-    //         <Button
-    //             className='ml-4 w-fit'
-    //             onClick={() => router.visit(route('web.term.list'))}
-    //         >
-    //             シーズン一覧ページへ
-    //         </Button>
-    //     </>
-    // )
 
 })
 export default Top
