@@ -3,6 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="title" content="{{ config('app.name', 'あにぐらふ') }}">
 
         <title inertia>{{ config('app.name', 'あにぐらふ') }}</title>
 
