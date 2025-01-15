@@ -36,7 +36,7 @@ export const Top = React.memo(function Top() {
                     }`}
             >
                 <div className="container mx-auto flex items-center justify-between px-4 py-4">
-                    <h1 className="text-3xl font-bold text-pink-500">Anigraph</h1>
+                    <h1 className="text-3xl font-bold text-pink-500">あにぐらふ</h1>
                     <nav className="hidden space-x-4 md:flex">
                         <button className="text-pink-500 hover:underline" onClick={() => router.visit(route('web.term.list'))}>
                             アニメシーズン一覧
