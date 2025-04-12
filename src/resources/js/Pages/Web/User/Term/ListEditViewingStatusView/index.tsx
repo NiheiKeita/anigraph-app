@@ -19,7 +19,11 @@ export const ListEditViewingStatusView = React.memo<Props>(function ListEditView
     const grouped = groupedTerms(terms)
 
     const handleClick = (id: string) => {
-        router.visit(route("web.user.term.edit.viewingStatus", { "user_id": user?.id, "term_id": id }))
+        router.visit(route("web.user.term.edit.viewingStatus", { "user_id": user?.id, "term_id": id }), {
+            data: {
+                media: "tv",
+            },
+        })
     }
 
     return (

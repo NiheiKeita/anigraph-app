@@ -16,7 +16,12 @@ export const ListView = React.memo<Props>(function ListView({
     const grouped = groupedTerms(terms)
 
     const handleClick = (id: string) => {
-        router.visit(route("web.term.show", id))
+        // router.visit(route("web.term.show", id))
+        router.visit(route("web.term.show", id), {
+            data: {
+                media: "tv",
+            },
+        })
     }
 
     return (
