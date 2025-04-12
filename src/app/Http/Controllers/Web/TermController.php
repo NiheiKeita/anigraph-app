@@ -21,7 +21,11 @@ class TermController extends Controller
     public function show(Request $request): Response
     {
         $term = Term::where("id", $request->term_id)->first();
-        $animations = $term->animations;
+        $animations = $term->animations()
+            ->when($request->filled('media'), function ($query) use ($request) {
+                $query->where('media', $request->media);
+            })
+            ->get();
         $notViewAnimations = [];
 
         return Inertia::render('Web/Term/ShowView', [
