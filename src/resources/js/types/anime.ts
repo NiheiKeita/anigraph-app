@@ -1,3 +1,5 @@
+export type EvaluationType = "SSS" | "SS" | "S" | "A" | "B" | "C" | "D" | "E"
+
 export type Anime = {
     id: number,
     title: string,
@@ -9,7 +11,7 @@ export type Anime = {
     facebook_image_url: string,
     season_name: string,
     pivot?: {
-        evaluation?: string,
+        evaluation?: EvaluationType,
         viewing_status?: string,
     }
 }
