@@ -53,9 +53,7 @@ class UserController extends Controller
             ->join('user_animations', 'animations.id', '=', 'user_animations.animation_id')
             ->where('user_animations.viewing_status', 1) // 中間テーブルの viewing_status が null
             ->where('user_animations.user_id', $userId)
-            ->when($request->filled('media'), function ($query) use ($request) {
-                $query->where('media', $request->media);
-            })
+            ->filteredByMedia($request->media)
             ->get();
 
         return Inertia::render('Web/User/Term/ShowView', [
@@ -82,17 +80,12 @@ class UserController extends Controller
         $user = Auth::guard('web')->user();
         $userId = $user->id;
         $term = Term::where("id", $request->term_id)->first();
-        $animations = $term->animations()
-            ->when($request->filled('media'), function ($query) use ($request) {
-                $query->where('media', $request->media);
-            });
+        $animations = $term->animations()->filteredByMedia($request->media)->get();
         $notViewAnimations = [];
         if ($userId == $request->user_id) {
             $animations = $term->animations()->whereDoesntHave('users', function ($query) use ($userId) {
                 $query->where('users.id', $userId); // 特定の userId と紐づいていない
-            })->when($request->filled('media'), function ($query) use ($request) {
-                $query->where('media', $request->media);
-            })->get();
+            })->filteredByMedia($request->media)->get();
 
             $notViewAnimations = $term->animations()
                 ->join('user_animations', 'animations.id', '=', 'user_animations.animation_id')
@@ -114,9 +107,7 @@ class UserController extends Controller
         /** @var \App\Models\User $user */
         $user = Auth::guard('web')->user();
         $animations = $user->animations()
-            ->when($request->filled('media'), function ($query) use ($request) {
-                $query->where('media', $request->media);
-            })
+            ->filteredByMedia($request->media)
             ->wherePivot('viewing_status', 1)->get();
 
         return Inertia::render('Web/User/AnimationRank/EditView', [
@@ -129,9 +120,8 @@ class UserController extends Controller
     {
         $user = User::where("id", $request->user_id)->first();
         $animations = $user->animations()
-            ->when($request->filled('media'), function ($query) use ($request) {
-                $query->where('media', $request->media);
-            })->wherePivot('viewing_status', 1)->get();
+            ->filteredByMedia($request->media)
+            ->wherePivot('viewing_status', 1)->get();
 
         return Inertia::render('Web/User/AnimationRank/ShowView', [
             'user' => $user,

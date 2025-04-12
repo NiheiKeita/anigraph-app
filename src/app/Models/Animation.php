@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -37,5 +38,12 @@ class Animation extends Model
     public function users(): BelongsToMany
     {
         return $this->belongsToMany(User::class, 'user_animations', 'animation_id', 'user_id')->withTimestamps();
+    }
+
+    public function scopeFilteredByMedia(Builder $query, ?string $media): Builder
+    {
+        return $query->when($media, function ($q) use ($media) {
+            $q->where('media', $media);
+        });
     }
 }
