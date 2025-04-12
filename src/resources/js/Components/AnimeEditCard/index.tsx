@@ -1,4 +1,4 @@
-import { Anime } from "@/types/anime"
+import { Anime, EvaluationType } from "@/types/anime"
 import React from "react"
 import Button from "../Button"
 import { evaluations } from "@/config/evaluation"
@@ -7,7 +7,7 @@ type Props = {
     anime?: Anime
     onClickSeeButton?: () => void
     onClickNotSeeButton?: () => void
-    onClickEvaluation: (evaluation: string) => void
+    onClickEvaluation: (evaluation: EvaluationType) => void
     isLoading: boolean
 }
 export const AnimeEditCard = React.memo<Props>(function AnimeEditCard({
