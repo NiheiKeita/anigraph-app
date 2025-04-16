@@ -40,6 +40,11 @@ class Animation extends Model
         return $this->belongsToMany(User::class, 'user_animations', 'animation_id', 'user_id')->withTimestamps();
     }
 
+    /**
+     * @param Builder<Animation> $query
+     * @param string|null $media
+     * @return Builder<Animation>
+     */
     public function scopeFilteredByMedia(Builder $query, ?string $media): Builder
     {
         return $query->when($media, function ($q) use ($media) {
