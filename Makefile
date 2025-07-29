@@ -19,3 +19,4 @@ cs-check:
 
 cs-fix:
 	docker compose exec app composer phpcsfix .
+	
