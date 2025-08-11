@@ -3,9 +3,9 @@
 namespace App\Http\Controllers\Web;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\ShowTermRequest;
 use App\Models\Term;
 use Inertia\Inertia;
-use Illuminate\Http\Request;
 use Inertia\Response;
 
 class TermController extends Controller
@@ -18,20 +18,15 @@ class TermController extends Controller
         ]);
     }
 
-    public function show(Request $request): Response
+    public function show(ShowTermRequest $request): Response
     {
-        $term = Term::where("id", $request->term_id)->first();
-        $animations = $term->animations()
-            ->when($request->filled('media'), function ($query) use ($request) {
-                $query->where('media', $request->media);
-            })
-            ->get();
-        $notViewAnimations = [];
+        $term = $request->term();
+        $animations = $term->animations()->filteredByMedia($request->media)->get();
 
         return Inertia::render('Web/Term/ShowView', [
             'term' => $term,
             'animations' => $animations,
-            'notViewAnimations' => $notViewAnimations,
+            'notViewAnimations' => [], // TODO:必要になったらロジック追加
         ]);
     }
 }
