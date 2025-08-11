@@ -13,7 +13,7 @@ export const WebLayout = React.memo<Props>(function AdminLayout({
     return (
         <>
             <WebHeader page={page} />
-            <div className="flex min-h-screen flex-col items-center bg-white font-yuGothic">
+            <div className="flex min-h-screen flex-col items-center bg-gradient-to-br from-theme-backgroundColor via-purple-50 to-white font-yuGothic">
                 <div className="w-full max-w-6xl overflow-hidden p-1">
                     {children}
                 </div>

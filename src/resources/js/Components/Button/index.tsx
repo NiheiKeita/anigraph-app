@@ -19,13 +19,13 @@ export const Button = React.memo<Props>(function Button({
     const variantCss = (() => {
         switch (variant) {
             case 'default':
-                return ' bg-white border-2 text-theme border-theme-default hover:bg-theme hover:text-white'
+                return ' bg-gradient-to-r from-purple-100 to-purple-50 border-2 text-purple-700 border-purple-300 hover:from-purple-700 hover:to-purple-600 hover:text-white hover:border-purple-500 hover:shadow-lg hover:shadow-purple-500/25'
             case 'blue':
-                return ' bg-theme  text-white border-gray-500 hover:opacity-90'
+                return ' bg-gradient-to-r from-purple-600 to-purple-700 text-white border-purple-500 hover:from-purple-700 hover:to-purple-800 hover:shadow-lg hover:shadow-purple-500/30 hover:-translate-y-0.5'
             case 'red':
-                return ' bg-red-500 border text-white border-gray-500 hover:opacity-90'
+                return ' bg-gradient-to-r from-red-500 to-red-600 border text-white border-red-400 hover:from-red-600 hover:to-red-700 hover:shadow-lg hover:shadow-red-500/30 hover:-translate-y-0.5'
             case 'attention':
-                return ' bg-yellow-500 text-black border-2 border-red-500 hover:bg-yellow-600 hover:shadow-lg animate-pulse'
+                return ' bg-gradient-to-r from-yellow-400 to-yellow-500 text-black border-2 border-accent-500 hover:from-yellow-500 hover:to-yellow-600 hover:shadow-lg hover:shadow-yellow-500/40 animate-pulse hover:-translate-y-0.5'
         }
     })()
 
@@ -34,8 +34,8 @@ export const Button = React.memo<Props>(function Button({
             {...props}
             className={
                 `inline-flex justify-center items-center px-4 py-2 rounded-full
-                font-semibold text-sm uppercase tracking-widest transition ease-in duration-150
-                ${disabled && 'opacity-25'} ` + className + variantCss
+                font-semibold text-sm uppercase tracking-widest transition-all ease-in-out duration-200 transform
+                ${disabled && 'opacity-25 cursor-not-allowed'} ` + className + variantCss
             }
             disabled={disabled}
         >
