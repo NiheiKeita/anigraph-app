@@ -21,26 +21,50 @@ export const ModalView = React.memo<Props>(function TitleText({
 }) {
     if (!isOpen) return null
     return (
-        <div className="fixed inset-0 z-50 flex items-center justify-center">
-            <div className="fixed inset-0 bg-black opacity-50" onClick={onClose}></div>
-            <div className="relative m-2 w-full max-w-2xl rounded-lg bg-white shadow-lg">
-                <div className="relative max-h-[90vh] w-full overflow-y-auto p-6 pb-20">
-                    <div className="mb-4 flex items-center justify-between">
-                        <h2 className="text-xl font-bold">{title}</h2>
+        <div className="fixed inset-0 z-50 flex animate-fade-in items-center justify-center p-4">
+            {/* 背景オーバーレイ */}
+            <div 
+                className="fixed inset-0 bg-gradient-to-br from-purple-900/50 via-indigo-900/50 to-pink-900/50 backdrop-blur-sm transition-opacity duration-300" 
+                onClick={onClose}
+            ></div>
+            
+            {/* モーダルコンテンツ */}
+            <div className="relative w-full max-w-2xl animate-scale-in">
+                {/* メインモーダル */}
+                <div className="anime-card border-2 border-purple-200/50 bg-gradient-to-br from-white via-purple-50/30 to-purple-100/50 shadow-2xl shadow-purple-500/20 backdrop-blur-xl">
+                    {/* ヘッダー */}
+                    <div className="relative border-b border-purple-200/50 bg-gradient-to-r from-purple-500/5 to-pink-500/5 px-6 py-4">
+                        <h2 className="text-shimmer text-2xl font-bold text-gray-800">
+                            {title}
+                        </h2>
+                        
+                        {/* デコレーティブライン */}
+                        <div className="mt-2 h-1 w-16 rounded-full bg-gradient-to-r from-purple-500 to-pink-500"></div>
                     </div>
-                    <div>{children}</div>
+                    
+                    {/* コンテンツエリア */}
+                    <div className="scrollbar-thin relative max-h-[70vh] w-full overflow-y-auto p-6">
+                        <div className="animate-slide-up" style={{ animationDelay: '150ms' }}>
+                            {children}
+                        </div>
+                    </div>
+                    
+                    {/* 閉じるボタン */}
+                    <button
+                        className="group absolute -right-3 -top-3 flex h-12 w-12 cursor-pointer items-center justify-center rounded-full bg-gradient-to-br from-red-400 to-red-500 shadow-lg shadow-red-500/30 transition-all duration-300 hover:scale-110 hover:shadow-xl hover:shadow-red-500/40 focus:outline-none focus:ring-4 focus:ring-red-300/50"
+                        onClick={onClose}
+                    >
+                        <span className="text-xl font-bold text-white transition-transform duration-300 group-hover:scale-110">
+                            ×
+                        </span>
+                        
+                        {/* ボタンのグロー効果 */}
+                        <div className="absolute inset-0 rounded-full bg-gradient-to-br from-red-300/0 to-red-600/0 transition-all duration-300 group-hover:from-red-300/20 group-hover:to-red-600/20"></div>
+                    </button>
                 </div>
-                {/* <div className="absolute bottom-0 left-0 w-full text-white flex gap-2 p-2 bg-black bg-opacity-30">
-                    <Button className='w-full' onClick={handleTelClick}>電話でお問合せ</Button>
-                    <Button className='w-full' onClick={handleInquiryClick} variant='blue'>お問合せ(無料)</Button>
-                </div> */}
-                <div
-                    className="absolute -top-5 right-0 flex h-10 w-10 cursor-pointer items-center
-                               justify-center rounded-full bg-theme p-2 text-2xl font-bold text-white hover:opacity-70 sm:-right-5"
-                    onClick={onClose}
-                >
-                    ×
-                </div>
+                
+                {/* モーダル外部のグロー効果 */}
+                <div className="absolute inset-0 -z-10 animate-pulse-glow rounded-2xl bg-gradient-to-r from-purple-500/10 to-pink-500/10 blur-xl"></div>
             </div>
         </div>
     )
